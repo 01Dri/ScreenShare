@@ -1,0 +1,18 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Paleta da aplicação. Usada por todas as telas para manter a mesma linguagem visual. -->
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <SolidColorBrush x:Key="PageBackgroundBrush" Color="#F3F3F6" />
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="CardBorderBrush" Color="#E1E1E6" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="PageBackgroundBrush" Color="#131316" />
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#1D1D21" />
+            <SolidColorBrush x:Key="CardBorderBrush" Color="#2E2E34" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

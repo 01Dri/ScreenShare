@@ -58,3 +58,6 @@ nunit-*.xml
 
 .idea*/
 
+# Visual Studio
+.vs/
+

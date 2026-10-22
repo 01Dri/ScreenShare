@@ -1,13 +1,18 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:ScreenShare.App.ViewModels"
+        xmlns:controls="using:ScreenShare.App.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="740"
         x:Class="ScreenShare.App.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="ScreenShare.App">
+        Title="ScreenShare"
+        Width="480" Height="740"
+        MinWidth="420" MinHeight="520"
+        Background="{DynamicResource PageBackgroundBrush}"
+        WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,8 +20,87 @@
         <vm:MainViewModel />
     </Design.DataContext>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+    <ScrollViewer x:Name="PageScroll"
+                  VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <Grid MinHeight="{Binding Viewport.Height, ElementName=PageScroll}">
+            <Border Classes="card"
+                    MaxWidth="390"
+                    Margin="24"
+                    VerticalAlignment="Center">
+                <StackPanel>
+
+                    <Border Width="56" Height="56"
+                            CornerRadius="14"
+                            HorizontalAlignment="Center"
+                            Background="{DynamicResource AccentButtonBackground}">
+                        <PathIcon Width="26" Height="26"
+                                  Foreground="{DynamicResource AccentButtonForeground}"
+                                  Data="{StaticResource IconMonitor}" />
+                    </Border>
+
+                    <TextBlock Text="ScreenShare"
+                               Margin="0,16,0,4"
+                               HorizontalAlignment="Center"
+                               FontSize="26"
+                               FontWeight="Bold" />
+
+                    <TextBlock Text="Crie uma sala ou entre em uma existente."
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"
+                               FontSize="13"
+                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+
+                    <TextBlock Classes="label" Text="Nome de usuário" />
+                    <TextBox Classes="field"
+                             Text="{Binding Username}"
+                             PlaceholderText="Como podemos te chamar?"
+                             MaxLength="32" />
+
+                    <TextBlock Classes="label" Text="O que você quer fazer?" />
+                    <controls:ChoiceSelector IsFirstSelected="{Binding IsCreatingRoom}"
+                                             FirstLabel="Criar sala"
+                                             FirstIcon="{StaticResource IconServerPlus}"
+                                             FirstHint="Você define o nome e a visibilidade da sala."
+                                             SecondLabel="Entrar"
+                                             SecondIcon="{StaticResource IconLogin}"
+                                             SecondHint="Você entra com o ID de uma sala existente." />
+
+                    <!-- Criar sala -->
+                    <StackPanel IsVisible="{Binding IsCreatingRoom}">
+                        <TextBlock Classes="label" Text="Nome da sala" />
+                        <TextBox Classes="field"
+                                 Text="{Binding RoomName}"
+                                 PlaceholderText="Ex.: Reunião de equipe"
+                                 MaxLength="40" />
+
+                        <TextBlock Classes="label" Text="Visibilidade da sala" />
+                        <controls:ChoiceSelector IsFirstSelected="{Binding IsPublicRoom}"
+                                                 FirstLabel="Pública"
+                                                 FirstIcon="{StaticResource IconEarth}"
+                                                 FirstHint="Qualquer pessoa com o código da sala pode entrar."
+                                                 SecondLabel="Privada"
+                                                 SecondIcon="{StaticResource IconLock}"
+                                                 SecondHint="Somente quem receber o convite pode entrar." />
+                    </StackPanel>
+
+                    <!-- Entrar em uma sala -->
+                    <StackPanel IsVisible="{Binding IsJoiningRoom}">
+                        <TextBlock Classes="label" Text="ID da sala" />
+                        <TextBox Classes="field"
+                                 Text="{Binding RoomId}"
+                                 PlaceholderText="Ex.: A1B2-C3D4"
+                                 MaxLength="16" />
+                    </StackPanel>
+
+                    <Button Classes="primary accent"
+                            Content="Continuar"
+                            Command="{Binding ContinueCommand}" />
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
 
 </Window>
