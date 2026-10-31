@@ -17,7 +17,7 @@ public partial class ChoiceSelector : UserControl
             nameof(IsFirstSelected),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay);
-
+    
     public static readonly StyledProperty<string?> FirstLabelProperty =
         AvaloniaProperty.Register<ChoiceSelector, string?>(nameof(FirstLabel));
 

@@ -4,13 +4,13 @@
         xmlns:controls="using:ScreenShare.App.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="740"
+        mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="640"
         x:Class="ScreenShare.App.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="ScreenShare"
-        Width="480" Height="740"
-        MinWidth="420" MinHeight="520"
+        Width="480" Height="640"
+        MinWidth="420" MinHeight="480"
         Background="{DynamicResource PageBackgroundBrush}"
         WindowStartupLocation="CenterScreen">
 
@@ -54,9 +54,13 @@
 
                     <TextBlock Classes="label" Text="Nome de usuário" />
                     <TextBox Classes="field"
+                             Classes.error="{Binding HasUsernameError}"
                              Text="{Binding Username}"
                              PlaceholderText="Como podemos te chamar?"
                              MaxLength="32" />
+                    <TextBlock Classes="error"
+                               Text="{Binding UsernameError}"
+                               IsVisible="{Binding HasUsernameError}" />
 
                     <TextBlock Classes="label" Text="O que você quer fazer?" />
                     <controls:ChoiceSelector IsFirstSelected="{Binding IsCreatingRoom}"
@@ -71,18 +75,24 @@
                     <StackPanel IsVisible="{Binding IsCreatingRoom}">
                         <TextBlock Classes="label" Text="Nome da sala" />
                         <TextBox Classes="field"
+                                 Classes.error="{Binding HasRoomNameError}"
                                  Text="{Binding RoomName}"
                                  PlaceholderText="Ex.: Reunião de equipe"
-                                 MaxLength="40" />
+                                 MaxLength="50" />
+                        <TextBlock Classes="error"
+                                   Text="{Binding RoomNameError}"
+                                   IsVisible="{Binding HasRoomNameError}" />
 
-                        <TextBlock Classes="label" Text="Visibilidade da sala" />
-                        <controls:ChoiceSelector IsFirstSelected="{Binding IsPublicRoom}"
-                                                 FirstLabel="Pública"
-                                                 FirstIcon="{StaticResource IconEarth}"
-                                                 FirstHint="Qualquer pessoa com o código da sala pode entrar."
-                                                 SecondLabel="Privada"
-                                                 SecondIcon="{StaticResource IconLock}"
-                                                 SecondHint="Somente quem receber o convite pode entrar." />
+                        <Grid ColumnDefinitions="Auto,*" Margin="2,14,0,0">
+                            <PathIcon Width="14" Height="14"
+                                      Margin="0,2,6,0"
+                                      VerticalAlignment="Top"
+                                      Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                      Data="{StaticResource IconLock}" />
+                            <TextBlock Grid.Column="1"
+                                       Classes="hint"
+                                       Text="Salas privadas: só entra quem tiver o convite." />
+                        </Grid>
                     </StackPanel>
 
                     <!-- Entrar em uma sala -->

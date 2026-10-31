@@ -24,10 +24,21 @@
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
+    <Style Selector="TextBlock.error">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="2,6,0,0" />
+    </Style>
+
     <Style Selector="TextBox.field">
         <Setter Property="Height" Value="42" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+    <Style Selector="TextBox.field.error /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}" />
     </Style>
 
     <Style Selector="Button.primary">

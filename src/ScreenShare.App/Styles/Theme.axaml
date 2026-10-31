@@ -7,11 +7,13 @@
             <SolidColorBrush x:Key="PageBackgroundBrush" Color="#F3F3F6" />
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />
             <SolidColorBrush x:Key="CardBorderBrush" Color="#E1E1E6" />
+            <SolidColorBrush x:Key="ErrorBrush" Color="#C50500" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
             <SolidColorBrush x:Key="PageBackgroundBrush" Color="#131316" />
             <SolidColorBrush x:Key="CardBackgroundBrush" Color="#1D1D21" />
             <SolidColorBrush x:Key="CardBorderBrush" Color="#2E2E34" />
+            <SolidColorBrush x:Key="ErrorBrush" Color="#FF6B6B" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
 
