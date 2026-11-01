@@ -47,7 +47,7 @@ public static partial class OS
         if (!Directory.Exists(crashDir))
             Directory.CreateDirectory(crashDir);
 
-        var time = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        var time = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss");
         var file = Path.Combine(crashDir, $"{time}.log");
         using var writer = new StreamWriter(file);
         writer.WriteLine($"Crash::: {ex.GetType().FullName}: {ex.Message}");
