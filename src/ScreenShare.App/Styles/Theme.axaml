@@ -1,20 +1,39 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="using:System">
 
-    <!-- Paleta da aplicação. Usada por todas as telas para manter a mesma linguagem visual. -->
-    <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Default">
-            <SolidColorBrush x:Key="PageBackgroundBrush" Color="#F3F3F6" />
-            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />
-            <SolidColorBrush x:Key="CardBorderBrush" Color="#E1E1E6" />
-            <SolidColorBrush x:Key="ErrorBrush" Color="#C50500" />
-        </ResourceDictionary>
-        <ResourceDictionary x:Key="Dark">
-            <SolidColorBrush x:Key="PageBackgroundBrush" Color="#131316" />
-            <SolidColorBrush x:Key="CardBackgroundBrush" Color="#1D1D21" />
-            <SolidColorBrush x:Key="CardBorderBrush" Color="#2E2E34" />
-            <SolidColorBrush x:Key="ErrorBrush" Color="#FF6B6B" />
-        </ResourceDictionary>
-    </ResourceDictionary.ThemeDictionaries>
+    <!-- Design tokens da tela "Início — compartilhar tela" (Figma: tela).
+         Base em preto, com o roxo do design apenas nos destaques. -->
+
+    <LinearGradientBrush x:Key="PageGradientBrush" StartPoint="0%,50%" EndPoint="100%,50%">
+        <GradientStop Offset="0" Color="#050505" />
+        <GradientStop Offset="1" Color="#0A0711" />
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="FormBackgroundBrush" Color="#0A0A0C" />
+
+    <!-- Bloom roxo suave no topo da tela cheia. -->
+    <RadialGradientBrush x:Key="FormBackgroundGlowBrush"
+                         Center="50%,0%"
+                         GradientOrigin="50%,0%"
+                         RadiusX="1"
+                         RadiusY="0.75">
+        <GradientStop Offset="0" Color="#331C5E" />
+        <GradientStop Offset="0.45" Color="#150F23" />
+        <GradientStop Offset="0.8" Color="#0A0A0C" />
+    </RadialGradientBrush>
+    <SolidColorBrush x:Key="FormBorderBrush" Color="#232030" />
+    <SolidColorBrush x:Key="InputBackgroundBrush" Color="#0E0E12" />
+    <SolidColorBrush x:Key="BadgeBackgroundBrush" Color="#1B1230" />
+
+    <SolidColorBrush x:Key="AccentBrush" Color="#7046C6" />
+
+    <SolidColorBrush x:Key="TextBrush" Color="#F5F3FF" />
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#A7A1C0" />
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#8F89A8" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="#F87171" />
+
+    <!-- O tema Fluent aplica 50% de opacidade ao placeholder; aqui usamos a cor cheia do design. -->
+    <sys:Double x:Key="TextControlPlaceholderOpacity">1</sys:Double>
 
 </ResourceDictionary>

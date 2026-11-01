@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ScreenShare.App.Models;
 
 namespace ScreenShare.App.ViewModels;
 
@@ -11,34 +12,58 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasUsernameError))]
-    [NotifyPropertyChangedFor(nameof(CanContinue))]
-    [NotifyCanExecuteChangedFor(nameof(ContinueCommand))]
+    [NotifyCanExecuteChangedFor(nameof(CreateRoomCommand))]
+    [NotifyCanExecuteChangedFor(nameof(JoinRoomCommand))]
     public partial string Username { get; set; } = string.Empty;
 
-    /// <summary><c>true</c> para criar uma sala; <c>false</c> para entrar em uma existente.</summary>
+    /// <summary>Criar uma sala (pede nome) ou entrar em uma existente (pede o ID).</summary>
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsJoiningRoom))]
-    [NotifyPropertyChangedFor(nameof(CanContinue))]
-    [NotifyCanExecuteChangedFor(nameof(ContinueCommand))]
-    public partial bool IsCreatingRoom { get; set; } = true;
+    [NotifyPropertyChangedFor(nameof(IsCreateSelected))]
+    [NotifyPropertyChangedFor(nameof(IsJoinSelected))]
+    [NotifyPropertyChangedFor(nameof(IsCreating))]
+    public partial RoomMode SelectedMode { get; set; } = RoomMode.Create;
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(HasRoomNameError))]
     [NotifyPropertyChangedFor(nameof(RoomNameError))]
-    [NotifyPropertyChangedFor(nameof(CanContinue))]
-    [NotifyCanExecuteChangedFor(nameof(ContinueCommand))]
+    [NotifyCanExecuteChangedFor(nameof(CreateRoomCommand))]
     public partial string RoomName { get; set; } = string.Empty;
 
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CanContinue))]
-    [NotifyCanExecuteChangedFor(nameof(ContinueCommand))]
+    [NotifyCanExecuteChangedFor(nameof(JoinRoomCommand))]
     public partial string RoomId { get; set; } = string.Empty;
 
-    public bool IsJoiningRoom => !IsCreatingRoom;
+    public bool IsCreating => SelectedMode == RoomMode.Create;
+
+    /// <summary>Espelho do modo para o segmento "Criar sala".</summary>
+    public bool IsCreateSelected
+    {
+        get => SelectedMode == RoomMode.Create;
+        set
+        {
+            if (value)
+            {
+                SelectedMode = RoomMode.Create;
+            }
+        }
+    }
+
+    /// <summary>Espelho do modo para o segmento "Entrar na sala".</summary>
+    public bool IsJoinSelected
+    {
+        get => SelectedMode == RoomMode.Join;
+        set
+        {
+            if (value)
+            {
+                SelectedMode = RoomMode.Join;
+            }
+        }
+    }
 
     public bool HasUsernameError => Username.Length > 0 && !IsUsernameValid;
 
-    public string UsernameError => $"O nome de usuário precisa ter ao menos {MinUsernameLength} caracteres.";
+    public string UsernameError => $"O nome precisa ter ao menos {MinUsernameLength} caracteres.";
 
     public bool HasRoomNameError => RoomName.Length > 0 && !IsRoomNameValid;
 
@@ -46,17 +71,23 @@ public partial class MainViewModel : ViewModelBase
         ? $"O nome da sala pode ter no máximo {MaxRoomNameLength} caracteres."
         : $"O nome da sala precisa ter ao menos {MinRoomNameLength} caracteres.";
 
-    public bool CanContinue => IsUsernameValid
-        && (IsCreatingRoom ? IsRoomNameValid : !string.IsNullOrWhiteSpace(RoomId));
-
     private bool IsUsernameValid => Username.Trim().Length >= MinUsernameLength;
 
     private bool IsRoomNameValid => RoomName.Trim().Length is >= MinRoomNameLength and <= MaxRoomNameLength;
 
-    // TODO: criar a sala privada (nome) ou entrar na sala (id) usando o nome de usuário.
-    //       Hoje todas as salas são privadas; a visibilidade deixou de ser uma opção do usuário.
-    [RelayCommand(CanExecute = nameof(CanContinue))]
-    private void Continue()
+    private bool CanCreateRoom => IsUsernameValid && IsRoomNameValid;
+
+    private bool CanJoinRoom => IsUsernameValid && !string.IsNullOrWhiteSpace(RoomId);
+
+    // TODO: criar a sala privada com o nome informado e abrir a transmissão.
+    [RelayCommand(CanExecute = nameof(CanCreateRoom))]
+    private void CreateRoom()
+    {
+    }
+
+    // TODO: entrar na sala pelo ID informado e abrir a transmissão.
+    [RelayCommand(CanExecute = nameof(CanJoinRoom))]
+    private void JoinRoom()
     {
     }
 }

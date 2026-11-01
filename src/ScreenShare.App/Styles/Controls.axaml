@@ -1,26 +1,19 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Estilos compartilhados por todas as telas. -->
-
-    <Style Selector="Border.card">
-        <Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource CardBorderBrush}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="14" />
-        <Setter Property="Padding" Value="32,30" />
-        <Setter Property="BoxShadow" Value="0 8 24 0 #22000000" />
-    </Style>
+    <!-- Estilos compartilhados pelas telas. -->
 
     <Style Selector="TextBlock.label">
-        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Margin" Value="0,18,0,8" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
     </Style>
 
     <Style Selector="TextBlock.hint">
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="LineHeight" Value="19.5" />
+        <Setter Property="Foreground" Value="{DynamicResource SecondaryTextBrush}" />
+        <Setter Property="Opacity" Value="0.9" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>
 
@@ -28,27 +21,82 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}" />
         <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="Margin" Value="2,6,0,0" />
     </Style>
 
     <Style Selector="TextBox.field">
-        <Setter Property="Height" Value="42" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Height" Value="52" />
+        <Setter Property="Padding" Value="12,0,16,0" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="FontSize" Value="15" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{DynamicResource InputBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource AccentBrush}" />
+        <Setter Property="PlaceholderForeground" Value="{DynamicResource MutedTextBrush}" />
+    </Style>
+
+    <Style Selector="TextBox.field /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="{DynamicResource FormBorderBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BoxShadow" Value="0 8 20 -10 #33000000" />
+    </Style>
+
+    <Style Selector="TextBox.field:pointerover /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+    </Style>
+
+    <Style Selector="TextBox.field:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
     </Style>
 
     <Style Selector="TextBox.field.error /template/ Border#PART_BorderElement">
         <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}" />
     </Style>
 
-    <Style Selector="Button.primary">
-        <Setter Property="Height" Value="44" />
-        <Setter Property="CornerRadius" Value="8" />
-        <Setter Property="Margin" Value="0,24,0,0" />
+    <!-- Abas com indicador em linha -->
+    <Style Selector="RadioButton.tab">
+        <Setter Property="Height" Value="52" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource MutedTextBrush}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border Background="{TemplateBinding Background}" />
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalContentAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      Margin="0,0,0,14" />
+                    <Border Name="PART_Indicator"
+                            Height="3"
+                            VerticalAlignment="Bottom"
+                            Background="Transparent" />
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="RadioButton.tab:pointerover">
+        <Setter Property="Background" Value="#12FFFFFF" />
+        <Setter Property="Foreground" Value="#C9C4DC" />
+    </Style>
+
+    <Style Selector="RadioButton.tab:checked">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style Selector="RadioButton.tab:checked:pointerover">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+    </Style>
+
+    <Style Selector="RadioButton.tab:checked /template/ Border#PART_Indicator">
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}" />
     </Style>
 
 </Styles>
