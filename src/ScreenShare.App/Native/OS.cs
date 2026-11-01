@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Avalonia;
+using Avalonia.Controls;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using Avalonia;
-using Avalonia.Controls;
 
 namespace ScreenShare.App.Native;
 
@@ -47,7 +47,7 @@ public static partial class OS
         if (!Directory.Exists(crashDir))
             Directory.CreateDirectory(crashDir);
 
-        var time = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        var time = DateTime.UtcNow.ToString("yyyy-MM-dd_HH-mm-ss");
         var file = Path.Combine(crashDir, $"{time}.log");
         using var writer = new StreamWriter(file);
         writer.WriteLine($"Crash::: {ex.GetType().FullName}: {ex.Message}");
@@ -59,7 +59,7 @@ public static partial class OS
         writer.WriteLine($"Source: {ex.Source}");
         writer.WriteLine($"Thread Name: {Thread.CurrentThread.Name ?? "Unnamed"}");
         writer.WriteLine($"App Start Time: {Process.GetCurrentProcess().StartTime}");
-        writer.WriteLine($"Exception Time: {DateTime.Now}");
+        writer.WriteLine($"Exception Time: {DateTime.UtcNow}");
         writer.WriteLine($"Memory Usage: {Process.GetCurrentProcess().PrivateMemorySize64 / 1024 / 1024} MB");
         writer.WriteLine("----------------------------");
         writer.WriteLine();
