@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Contracts\Base\" />
+      <Folder Include="Contracts\Interfaces\Repositories\" />
+      <Folder Include="Contracts\Interfaces\Services\" />
+    </ItemGroup>
+
+</Project>
