@@ -1,6 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ScreenShare.App.Models;
+using ScreenShare.Domain.Rooms;
 
 namespace ScreenShare.App.ViewModels;
 

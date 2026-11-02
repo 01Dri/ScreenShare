@@ -7,19 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="12.1.4"/>
-        <PackageReference Include="Avalonia.Desktop" Version="12.1.4"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.4"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.4"/>
+        <PackageReference Include="Avalonia" Version="12.1.4" />
+        <PackageReference Include="Avalonia.Desktop" Version="12.1.4" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.4" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.4" />
         <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Version="2.2.3">
             <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
         <PackageReference Include="WebView.Avalonia.Windows" Version="11.0.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ScreenShare.Domain\ScreenShare.Domain.csproj" />
     </ItemGroup>
 </Project>
