@@ -14,7 +14,7 @@ public static class ServicesExtension
         {
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", false, false)
+                .AddJsonFile("appsettings.json", false, true)
                 .Build();
             collection.AddSingleton(configuration);
 
