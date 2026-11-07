@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="StackExchange.Redis" Version="3.4.31"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ScreenShare.Domain\ScreenShare.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Extensions\"/>
+    </ItemGroup>
+
 </Project>

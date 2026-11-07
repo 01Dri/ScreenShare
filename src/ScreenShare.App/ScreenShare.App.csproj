@@ -20,10 +20,20 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.14" />
         <PackageReference Include="WebView.Avalonia.Windows" Version="11.0.0.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ScreenShare.Application\ScreenShare.Application.csproj" />
       <ProjectReference Include="..\ScreenShare.Domain\ScreenShare.Domain.csproj" />
+      <ProjectReference Include="..\ScreenShare.IoC\ScreenShare.IoC.csproj" />
     </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 </Project>

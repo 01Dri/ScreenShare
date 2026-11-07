@@ -7,9 +7,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Database\" />
-      <Folder Include="Implementations\" />
-      <Folder Include="Logs\" />
+        <Folder Include="Database\"/>
+        <Folder Include="Implementations\"/>
+        <Folder Include="Logs\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.14"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.14"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.14"/>
+        <PackageReference Include="StackExchange.Redis" Version="3.4.31"/>
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ScreenShare.Application\ScreenShare.Application.csproj"/>
+        <ProjectReference Include="..\ScreenShare.Domain\ScreenShare.Domain.csproj"/>
     </ItemGroup>
 
 </Project>

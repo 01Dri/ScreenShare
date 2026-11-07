@@ -12,4 +12,8 @@
       <Folder Include="Repositories\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\ScreenShare.Domain\ScreenShare.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
