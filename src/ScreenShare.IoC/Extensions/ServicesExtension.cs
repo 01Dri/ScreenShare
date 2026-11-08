@@ -33,7 +33,7 @@ public static class ServicesExtension
 
                 return ConnectionMultiplexer.Connect(options);
             });
-            collection.AddScoped<ICacheService, RedisService>();
+            collection.AddScoped<IRedisService, RedisService>();
         }
     }
 }
