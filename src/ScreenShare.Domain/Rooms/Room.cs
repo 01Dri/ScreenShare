@@ -1,4 +1,5 @@
 ﻿using ScreenShare.Domain.Users;
+using System.Security.Cryptography;
 
 namespace ScreenShare.Domain.Rooms
 {
@@ -6,7 +7,7 @@ namespace ScreenShare.Domain.Rooms
     {
         public Guid Id { get; } = Guid.NewGuid();
         public string Name { get; init; } = string.Empty;
-        public string JoinKey { init;  get; } = string.Empty;
+        public string JoinKey { init; get; } = string.Empty;
         public User Owner { get; init; }
         public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
         public List<User> Users { get; init; } = [];
@@ -34,21 +35,19 @@ namespace ScreenShare.Domain.Rooms
             Users.Add(owner);
         }
 
+        /**
+         * Temos no total 492.804.000 combinações de IDS, porém, colisões ainda podem ocorrer. Estudar boas praticas para evitar colisões.
+        **/
 
         private string BuildJoinKey()
         {
             const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const string numbers = "0123456789";
 
-            var random = Random.Shared;
+            var prefix = RandomNumberGenerator.GetString(letters, 3);
 
-            var prefix = new string(
-                Enumerable.Range(0, 3)
-                    .Select(_ => letters[random.Next(letters.Length)])
-                    .ToArray());
+            var firstPart = RandomNumberGenerator.GetInt32(100, 1000);
+            var secondPart = RandomNumberGenerator.GetInt32(100, 1000);
 
-            var firstPart = random.Next(100, 1000);
-            var secondPart = random.Next(100, 1000);
             return $"{prefix}-{firstPart}-{secondPart}";
         }
     }
