@@ -171,9 +171,10 @@ public partial class MainViewModel : ViewModelBase
 
             RoomEntered?.Invoke(this, room);
         }
-        catch (Exception)
+        catch (Exception ex )
         {
             JoinError = "Não foi possível entrar na sala. Tente novamente.";
+            Native.OS.LogException(ex);
         }
     }
 }
