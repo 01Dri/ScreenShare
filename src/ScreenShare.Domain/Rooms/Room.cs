@@ -11,12 +11,12 @@ namespace ScreenShare.Domain.Rooms
         public DateTime CreatedAt { get; init; } = DateTime.UtcNow;
         public List<User> Users { get; init; } = [];
 
-        public string BuildDatabaseKey()
+        public string BuildKey()
         {
-            return BuildDatabaseKey(JoinKey);
+            return BuildKey(JoinKey);
         }
 
-        public static string BuildDatabaseKey(string joinKey)
+        public static string BuildKey(string joinKey)
         {
             return $"room:{NormalizeJoinKey(joinKey)}";
         }

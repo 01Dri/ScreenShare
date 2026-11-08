@@ -11,6 +11,13 @@
     </LinearGradientBrush>
 
     <SolidColorBrush x:Key="FormBackgroundBrush" Color="#0A0A0C" />
+    <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#101014" />
+    <SolidColorBrush x:Key="PanelBorderBrush" Color="#2A2536" />
+
+    <LinearGradientBrush x:Key="StageBackgroundBrush" StartPoint="0%,0%" EndPoint="100%,100%">
+        <GradientStop Offset="0" Color="#141019" />
+        <GradientStop Offset="1" Color="#0B0A0F" />
+    </LinearGradientBrush>
 
     <!-- Bloom roxo suave no topo da tela cheia. -->
     <RadialGradientBrush x:Key="FormBackgroundGlowBrush"

@@ -161,11 +161,12 @@
                         <TextBlock Classes="hint" Text="Escolha um nome fácil de reconhecer." />
                     </StackPanel>
 
-                    <!-- Entrar: ID da sala -->
+                    <!-- Entrar: código da sala -->
                     <StackPanel Spacing="8" IsVisible="{Binding IsJoinSelected}">
-                        <TextBlock Classes="label" Text="ID da sala" />
+                        <TextBlock Classes="label" Text="Código da sala" />
                         <TextBox Classes="field"
-                                 Text="{Binding RoomId}"
+                                 Classes.error="{Binding HasRoomKeyError}"
+                                 Text="{Binding RoomKey}"
                                  PlaceholderText="Ex.: JNT-482-916"
                                  MaxLength="16">
                             <TextBox.InnerLeftContent>
@@ -181,7 +182,13 @@
                                       StrokeJoin="Round" />
                             </TextBox.InnerLeftContent>
                         </TextBox>
-                        <TextBlock Classes="hint" Text="Peça o ID a quem criou a sala." />
+                        <TextBlock Classes="error"
+                                   Text="{Binding RoomKeyError}"
+                                   IsVisible="{Binding HasRoomKeyError}" />
+                        <TextBlock Classes="error"
+                                   Text="{Binding JoinError}"
+                                   IsVisible="{Binding HasJoinError}" />
+                        <TextBlock Classes="hint" Text="Peça o código a quem criou a sala." />
                     </StackPanel>
 
                 </StackPanel>

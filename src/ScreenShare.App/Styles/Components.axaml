@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="using:ScreenShare.App.Controls">
+                    xmlns:controls="using:ScreenShare.App.Controls"
+                    xmlns:conv="using:Avalonia.Data.Converters">
 
     <!-- Ação da sala: secundária por padrão, primária com a classe "primary". -->
     <ControlTheme x:Key="{x:Type controls:ActionButton}" TargetType="controls:ActionButton">
@@ -30,7 +31,8 @@
                         <Path Width="{TemplateBinding IconSize}"
                               Height="{TemplateBinding IconSize}"
                               VerticalAlignment="Center"
-                              Stretch="None"
+                              IsVisible="{Binding $parent[controls:ActionButton].Icon, Converter={x:Static conv:ObjectConverters.IsNotNull}}"
+                              Stretch="Uniform"
                               Data="{TemplateBinding Icon}"
                               Stroke="{TemplateBinding Foreground}"
                               StrokeThickness="1.8"
@@ -74,6 +76,37 @@
 
         <Style Selector="^.secondary:pressed">
             <Setter Property="Background" Value="#141126" />
+        </Style>
+
+        <Style Selector="^.danger">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="#4A2530" />
+            <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}" />
+        </Style>
+
+        <Style Selector="^.danger:pointerover">
+            <Setter Property="Background" Value="#1F1418" />
+            <Setter Property="BorderBrush" Value="{DynamicResource ErrorBrush}" />
+        </Style>
+
+        <Style Selector="^.danger:pressed">
+            <Setter Property="Background" Value="#2A171C" />
+        </Style>
+
+        <Style Selector="^.danger-solid">
+            <Setter Property="Background" Value="#E5484D" />
+            <Setter Property="BorderBrush" Value="#E5484D" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style Selector="^.danger-solid:pointerover">
+            <Setter Property="Background" Value="#F25A5E" />
+            <Setter Property="BorderBrush" Value="#F25A5E" />
+        </Style>
+
+        <Style Selector="^.danger-solid:pressed">
+            <Setter Property="Background" Value="#C93A3F" />
+            <Setter Property="BorderBrush" Value="#C93A3F" />
         </Style>
 
         <Style Selector="^:disabled">
